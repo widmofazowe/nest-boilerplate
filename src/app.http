@@ -1,0 +1,13 @@
+@APP_URL = http://localhost:3000
+
+###
+GET {{APP_URL}}
+
+###
+POST {{APP_URL}}
+Content-Type: application/json
+
+{
+  "name": "widmo",
+  "email": "widmo@rspective.pl"
+}
