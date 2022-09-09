@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions, Repository } from 'typeorm';
+import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 
 import { User } from '../entities/user.entity';
 
@@ -11,16 +11,21 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  findAll() {
-    return this.usersRepository.find();
+  findAll(options?: FindManyOptions<User>) {
+    return this.usersRepository.find(options);
   }
 
   findOne(options: FindOneOptions<User>) {
     return this.usersRepository.findOne(options);
   }
 
-  create(createUserDto: any) {
-    console.log(createUserDto);
-    return this.usersRepository.save({ ...createUserDto });
+  create(payload: Partial<User>) {
+    console.log(payload);
+    return this.usersRepository.save({ ...payload });
+  }
+
+  update(id: string, payload: Partial<User>) {
+    console.log({ id, ...payload });
+    return this.usersRepository.save({ id, ...payload });
   }
 }

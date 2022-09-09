@@ -4,10 +4,21 @@
 GET {{APP_URL}}
 
 ###
-POST {{APP_URL}}
+GET {{APP_URL}}/user
+
+###
+POST {{APP_URL}}/user
 Content-Type: application/json
 
 {
   "name": "widmo",
   "email": "widmo@rspective.pl"
+}
+
+###
+PUT {{APP_URL}}/user/30907757-d861-4486-9aae-c070da0df1c1
+Content-Type: application/json
+
+{
+  "name": "widmo2"
 }
