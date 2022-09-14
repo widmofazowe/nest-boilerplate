@@ -1,12 +1,10 @@
 import { Exclude } from 'class-transformer';
 import { TrackFieldHistory } from 'nest-typeorm-history';
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { Entity, Column, Index } from 'typeorm';
+import { AbstractEntity } from './abstract.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class User extends AbstractEntity {
   @TrackFieldHistory()
   @Column()
   name: string;

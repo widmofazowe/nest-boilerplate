@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, Logger, NotAcceptableException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, UsersService } from '../core';
+import { User, CoreUsersService } from '../core';
 import { PasswordService } from '../password/password.service';
 import config from 'src/config';
 import { instanceToPlain } from 'class-transformer';
@@ -10,7 +10,7 @@ export class AuthService {
   private logger = new Logger(AuthService.name);
 
   constructor(
-    private usersService: UsersService,
+    private usersService: CoreUsersService,
     private passwordService: PasswordService,
     private jwtService: JwtService,
   ) {}

@@ -4,11 +4,11 @@ import { ActivityModule } from 'nest-typeorm-object-activites';
 import { UserActivity } from './entities/user-activity.entity';
 
 import { User } from './entities/user.entity';
-import { UsersService } from './services/user.service';
+import { CoreUsersService } from './services/user.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, UserActivity]), ActivityModule.forFeature(UserActivity, 'user')],
-  providers: [UsersService],
-  exports: [UsersService],
+  providers: [CoreUsersService],
+  exports: [CoreUsersService],
 })
 export class CoreModule {}

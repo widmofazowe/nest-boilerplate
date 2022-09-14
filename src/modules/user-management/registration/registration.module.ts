@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../core';
-import { PasswordModule } from '../password/password.module';
+import { CoreModule } from '../../core';
+import { PasswordModule } from '../../password/password.module';
 import { RegistrationController } from './registration.controller';
 import { RegistrationService } from './registration.service';
 

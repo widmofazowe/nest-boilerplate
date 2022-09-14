@@ -13,6 +13,25 @@ Content-Type: application/json
   "password": "12345"
 }
 
+### reset user password
+# @name reset-password
+POST {{APP_URL}}/reset-password
+Content-Type: application/json
+
+{
+  "email": "widmo@rspective.pl"
+}
+
+
+### update user password
+# @name update-password
+POST {{APP_URL}}/reset-password/dc39ae03-fef0-4a47-b5d4-1f6c52f388e6/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndpZG1vQHJzcGVjdGl2ZS5wbCIsImlhdCI6MTY2MzE4NTYyMSwiZXhwIjoxNjYzMTg5MjIxfQ.j6amd88715QEDWYGBTOJktfadesQgouU_HqNkaLLplQ
+Content-Type: application/json
+
+{
+  "password": "12345"
+}
+
 ### login user
 # @name login
 POST {{APP_URL}}/auth/login
