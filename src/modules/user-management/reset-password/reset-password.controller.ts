@@ -5,7 +5,7 @@ import { UserManagementResetPasswordService } from './reset-password.service';
 import { UpdatePasswordDto } from './update-password.dto';
 
 @Controller('/reset-password')
-export class UserManagementResetPasswordController {
+export class ResetPasswordController {
   constructor(private resetPasswordService: UserManagementResetPasswordService) {}
 
   @Post('/')

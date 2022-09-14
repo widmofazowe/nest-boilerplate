@@ -6,8 +6,8 @@ import { SendEmailEvent, SEND_EMAIL_EVENT } from 'nest-mailer-module';
 import { PasswordService } from 'src/modules/password/password.service';
 
 @Injectable()
-export class UserManagementResetPasswordService {
-  private logger = new Logger(UserManagementResetPasswordService.name);
+export class ResetPasswordService {
+  private logger = new Logger(ResetPasswordService.name);
 
   constructor(
     private jwtService: JwtService,
