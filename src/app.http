@@ -14,6 +14,7 @@ Content-Type: application/json
 }
 
 ### login user
+# @name login
 POST {{APP_URL}}/auth/login
 Content-Type: application/json
 
@@ -21,3 +22,10 @@ Content-Type: application/json
   "username": "widmo@rspective.pl",
   "password": "12345"
 }
+
+###
+@authToken = {{login.response.body.authToken}}
+### get current user
+# @name get-user
+GET {{APP_URL}}/user
+Authorization: Bearer {{authToken}}
