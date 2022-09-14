@@ -3,10 +3,10 @@
 ###
 GET {{APP_URL}}
 
-###
+### list users
 GET {{APP_URL}}/user
 
-###
+### create user
 POST {{APP_URL}}/user
 Content-Type: application/json
 
@@ -15,10 +15,22 @@ Content-Type: application/json
   "email": "widmo@rspective.pl"
 }
 
-###
+### update user
 PUT {{APP_URL}}/user/30907757-d861-4486-9aae-c070da0df1c1
 Content-Type: application/json
 
 {
   "name": "widmo2"
 }
+
+### create activity
+POST {{APP_URL}}/activity/user/30907757-d861-4486-9aae-c070da0df1c1
+Content-Type: application/json
+
+{
+  "description": "widmo2",
+  "authorId": "30907757-d861-4486-9aae-c070da0df1c1"
+}
+
+### get activities
+GET {{APP_URL}}/activity/user/30907757-d861-4486-9aae-c070da0df1c1

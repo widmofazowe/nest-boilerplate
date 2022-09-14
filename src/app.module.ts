@@ -5,9 +5,10 @@ import { AppService } from './app.service';
 import { CoreModule } from './modules/core';
 import config from './config';
 import { RequestContextMiddleware, TypeOrmHistoryModule } from 'nest-typeorm-history';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({ ...config.database }), CoreModule, TypeOrmHistoryModule],
+  imports: [TypeOrmModule.forRoot({ ...config.database }), CoreModule, TypeOrmHistoryModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
