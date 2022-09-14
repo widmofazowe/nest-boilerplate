@@ -2,11 +2,11 @@ import { ClassSerializerInterceptor, Controller, Get, UseInterceptors } from '@n
 import { AppService } from './app.service';
 import { Public } from './common/decorators/public.decorator';
 import { RequestUser } from './common/decorators/user.decorator';
-import { User, UsersService } from './modules/core';
+import { User } from './modules/core';
 
 @Controller('/')
 export class AppController {
-  constructor(private appService: AppService, private usersService: UsersService) {}
+  constructor(private appService: AppService) {}
 
   @Public()
   @Get('/')
