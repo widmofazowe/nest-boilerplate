@@ -3,34 +3,21 @@
 ###
 GET {{APP_URL}}
 
-### list users
-GET {{APP_URL}}/user
-
-### create user
-POST {{APP_URL}}/user
+### register user
+POST {{APP_URL}}/registration
 Content-Type: application/json
 
 {
   "name": "widmo",
-  "email": "widmo@rspective.pl"
+  "email": "widmo@rspective.pl",
+  "password": "12345"
 }
 
-### update user
-PUT {{APP_URL}}/user/30907757-d861-4486-9aae-c070da0df1c1
+### login user
+POST {{APP_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "name": "widmo2"
+  "username": "widmo@rspective.pl",
+  "password": "12345"
 }
-
-### create activity
-POST {{APP_URL}}/activity/user/30907757-d861-4486-9aae-c070da0df1c1
-Content-Type: application/json
-
-{
-  "description": "widmo2",
-  "authorId": "30907757-d861-4486-9aae-c070da0df1c1"
-}
-
-### get activities
-GET {{APP_URL}}/activity/user/30907757-d861-4486-9aae-c070da0df1c1

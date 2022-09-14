@@ -1,8 +1,13 @@
 import { join } from 'path';
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('dotenv').config();
+}
 
 export default {
   jwt: {
-    secret: process.env.JWT_SECRET,
+    authSecret: process.env.JWT_AUTH_SECRET,
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
   },
   database: {
     type: 'postgres',

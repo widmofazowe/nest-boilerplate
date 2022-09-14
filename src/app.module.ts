@@ -6,9 +6,16 @@ import { CoreModule } from './modules/core';
 import config from './config';
 import { RequestContextMiddleware, TypeOrmHistoryModule } from 'nest-typeorm-history';
 import { AuthModule } from './modules/auth/auth.module';
+import { RegistrationModule } from './modules/registration/registration.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({ ...config.database }), CoreModule, TypeOrmHistoryModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot({ ...config.database }),
+    CoreModule,
+    TypeOrmHistoryModule,
+    AuthModule,
+    RegistrationModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

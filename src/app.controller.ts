@@ -1,24 +1,22 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Public } from './common/decorators/public.decorator';
 import { UsersService } from './modules/core';
 
 @Controller('/')
 export class AppController {
   constructor(private appService: AppService, private usersService: UsersService) {}
 
+  @Public()
   @Get('/')
   getHello(): string {
     return this.appService.getHello();
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get('/user')
   getUsers() {
     return this.usersService.findAll({ where: { name: undefined, email: 'widmo@rspective.pl' } });
-  }
-
-  @Post('/user')
-  createUser(@Body() createUserDto: any) {
-    return this.usersService.create(createUserDto);
   }
 
   @Put('/user/:id')

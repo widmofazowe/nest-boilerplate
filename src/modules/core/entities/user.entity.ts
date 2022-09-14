@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { TrackFieldHistory } from 'nest-typeorm-history';
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
@@ -15,6 +16,7 @@ export class User {
   @Column()
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
 }
