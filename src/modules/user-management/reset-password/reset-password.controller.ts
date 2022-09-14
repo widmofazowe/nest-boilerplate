@@ -1,12 +1,12 @@
 import { Body, Controller, Param, Post, Put } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ResetPasswordDto } from './reset-password.dto';
-import { UserManagementResetPasswordService } from './reset-password.service';
+import { ResetPasswordService } from './reset-password.service';
 import { UpdatePasswordDto } from './update-password.dto';
 
 @Controller('/reset-password')
 export class ResetPasswordController {
-  constructor(private resetPasswordService: UserManagementResetPasswordService) {}
+  constructor(private resetPasswordService: ResetPasswordService) {}
 
   @Post('/')
   @Public()
