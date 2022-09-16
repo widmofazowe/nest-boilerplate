@@ -29,19 +29,17 @@ export class AuthService {
 
   async refresh(refreshToken: string) {
     this.logger.log({ refreshToken }, 'Trying to refresh jwt');
-    let username;
     try {
-      ({ username } = this.jwtService.verify(refreshToken, {
+      const { username } = this.jwtService.verify(refreshToken, {
         secret: config.jwt.refreshSecret,
-      }));
+      });
+      const user = await this.getByUsername(username);
+      this.logger.log({ username, userId: user.id }, 'Refreshing tokens');
+      return this.generateJWTTokens(user);
     } catch (e) {
       this.logger.log({ refreshToken }, 'Bad refresh token');
       throw new NotAcceptableException();
     }
-
-    const user = await this.getByUsername(username);
-    this.logger.log({ username, userId: user.id }, 'Refreshing tokens');
-    return this.generateJWTTokens(user);
   }
 
   private async getByUsername(username: string) {
