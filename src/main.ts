@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { registerSignalHandler } from './signal-handler';
 
-const port = 3000;
+const port = 8000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
