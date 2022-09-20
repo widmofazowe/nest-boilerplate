@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ResetPasswordDto } from './reset-password.dto';
 import { ResetPasswordService } from './reset-password.service';

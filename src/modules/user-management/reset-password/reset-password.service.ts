@@ -1,9 +1,8 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CoreUsersService, User } from 'src/modules/core';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { SendEmailEvent, SEND_EMAIL_EVENT } from 'nest-mailer-module';
 import { PasswordService } from 'src/modules/password/password.service';
+import { MailerEventEmitter } from 'src/modules/mailer/mailer.emitter';
 
 @Injectable()
 export class ResetPasswordService {
@@ -11,7 +10,7 @@ export class ResetPasswordService {
 
   constructor(
     private jwtService: JwtService,
-    private eventEmitter: EventEmitter2,
+    private mailerEventEmitter: MailerEventEmitter,
     private usersService: CoreUsersService,
     private passwordService: PasswordService,
   ) {}
@@ -32,11 +31,11 @@ export class ResetPasswordService {
       },
     );
 
-    this.eventEmitter.emit(SEND_EMAIL_EVENT, {
+    this.mailerEventEmitter.emit({
       subject: 'Reset Password',
       to: [{ email, type: 'to' }],
       text: `Reset password with following token ${user.id}/${resetPasswordToken}`,
-    } as SendEmailEvent);
+    });
   }
 
   async updatePasword(userId: string, token: string, password: string) {

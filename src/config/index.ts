@@ -21,4 +21,10 @@ export default {
     logging: true,
     entities: [join(__dirname, '..', '**', '*.entity.{ts,js}')],
   } as any,
+  sendgrid: {
+    key: process.env.SENDGRID_KEY,
+  },
+  email: {
+    from: { email: 'typer@pawelwidomski.pl' },
+  },
 };
