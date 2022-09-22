@@ -1,13 +1,17 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { User } from 'src/common/entities/user';
+import { CoreService, InjectCoreService } from 'src/modules/core';
 import { PasswordService } from '../../password/password.service';
-import { CoreUsersService } from '../../core';
 import { RegistrationDto } from './registration.dto';
 
 @Injectable()
 export class RegistrationService {
   private logger = new Logger(RegistrationService.name);
 
-  constructor(private usersService: CoreUsersService, private passwordService: PasswordService) {}
+  constructor(
+    @InjectCoreService(User) private usersService: CoreService<User>,
+    private passwordService: PasswordService,
+  ) {}
 
   async register(registrationDto: RegistrationDto) {
     this.logger.log(

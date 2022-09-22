@@ -1,8 +1,9 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CoreUsersService, User } from 'src/modules/core';
 import { PasswordService } from 'src/modules/password/password.service';
 import { MailerEventEmitter } from 'src/modules/mailer/mailer.emitter';
+import { CoreService, InjectCoreService } from 'src/modules/core';
+import { User } from 'src/common/entities/user';
 
 @Injectable()
 export class ResetPasswordService {
@@ -11,7 +12,7 @@ export class ResetPasswordService {
   constructor(
     private jwtService: JwtService,
     private mailerEventEmitter: MailerEventEmitter,
-    private usersService: CoreUsersService,
+    @InjectCoreService(User) private usersService: CoreService<User>,
     private passwordService: PasswordService,
   ) {}
 

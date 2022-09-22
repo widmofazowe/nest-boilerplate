@@ -1,14 +1,43 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ActivityModule } from 'nest-typeorm-object-activites';
-import { UserActivity } from './entities/user-activity.entity';
+import { createCoreService } from './core-service.factory';
+import { createCoreController } from './core.controller';
+import { AbstractEntity } from './abstract.entity';
 
-import { User } from './entities/user.entity';
-import { CoreUsersService } from './services/user.service';
+import { EntityConfig } from './entity-config';
+import { getCoreServiceToken } from './inject.decorator';
+import { AuthorizationModule } from '../authorization/authorization.module';
 
-@Module({
-  imports: [TypeOrmModule.forFeature([User, UserActivity]), ActivityModule.forFeature(UserActivity, 'user')],
-  providers: [CoreUsersService],
-  exports: [CoreUsersService],
-})
-export class CoreModule {}
+@Module({})
+export class CoreModule {
+  private static logger = new Logger(CoreModule.name);
+
+  static forFeature<T extends AbstractEntity>(entityConfig: EntityConfig<T>): DynamicModule {
+    this.logger.log(`Initializing core for ${entityConfig.baseEntity.name}`);
+    const coreServiceToken = getCoreServiceToken(entityConfig.baseEntity);
+    const coreService = createCoreService<T>(entityConfig);
+    const coreController = createCoreController<T>(entityConfig);
+
+    const provider = {
+      provide: coreServiceToken,
+      useClass: coreService,
+    };
+
+    return {
+      module: CoreModule,
+      global: true,
+      imports: [
+        AuthorizationModule,
+        TypeOrmModule.forFeature([entityConfig.baseEntity, ...(entityConfig?.supportEntities || [])]),
+      ],
+      providers: [
+        {
+          provide: coreServiceToken,
+          useClass: coreService,
+        },
+      ],
+      exports: [provider],
+      controllers: [coreController],
+    };
+  }
+}

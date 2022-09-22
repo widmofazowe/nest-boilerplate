@@ -2,7 +2,7 @@ import { ClassSerializerInterceptor, Controller, Get, UseInterceptors } from '@n
 import { AppService } from './app.service';
 import { Public } from './common/decorators/public.decorator';
 import { RequestUser } from './common/decorators/user.decorator';
-import { User } from './modules/core';
+import { User } from './common/entities/user';
 
 @Controller('/')
 export class AppController {

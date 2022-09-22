@@ -10,6 +10,7 @@ import { CoreModule } from './modules/core';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserManagementModule } from './modules/user-management/user.module';
 import { AppMailerModule } from './modules/mailer/mailer.module';
+import { User, UserActivity, UserHistory } from './common/entities/user';
 
 @Module({
   imports: [
@@ -17,8 +18,8 @@ import { AppMailerModule } from './modules/mailer/mailer.module';
     TypeOrmHistoryModule,
     EventEmitterModule.forRoot(),
     //internal
+    CoreModule.forFeature({ baseEntity: User, baseUrl: 'user', supportEntities: [UserHistory, UserActivity] }),
     AppMailerModule,
-    CoreModule,
     AuthModule,
     UserManagementModule,
   ],

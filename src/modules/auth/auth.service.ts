@@ -1,16 +1,17 @@
 import { BadRequestException, Injectable, Logger, NotAcceptableException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, CoreUsersService } from '../core';
 import { PasswordService } from '../password/password.service';
 import config from 'src/config';
 import { instanceToPlain } from 'class-transformer';
+import { CoreService, InjectCoreService } from '../core';
+import { User } from 'src/common/entities/user';
 
 @Injectable()
 export class AuthService {
   private logger = new Logger(AuthService.name);
 
   constructor(
-    private usersService: CoreUsersService,
+    @InjectCoreService(User) private usersService: CoreService<User>,
     private passwordService: PasswordService,
     private jwtService: JwtService,
   ) {}
