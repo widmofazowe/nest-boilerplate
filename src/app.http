@@ -38,7 +38,7 @@ POST {{APP_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "widmo@rspective.pl",
+  "username": "widomski.pawel@gmail.com",
   "password": "12345"
 }
 
