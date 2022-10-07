@@ -7,6 +7,7 @@ import { AbstractEntity } from './abstract.entity';
 import { EntityConfig } from './entity-config';
 import { getCoreServiceToken } from './inject.decorator';
 import { AuthorizationModule } from '../authorization/authorization.module';
+import { createCoreResolver } from './core.resolver';
 
 @Module({})
 export class CoreModule {
@@ -17,6 +18,7 @@ export class CoreModule {
     const coreServiceToken = getCoreServiceToken(entityConfig.baseEntity);
     const coreService = createCoreService<T>(entityConfig);
     const coreController = createCoreController<T>(entityConfig);
+    const coreResolver = createCoreResolver<T>(entityConfig);
 
     const provider = {
       provide: coreServiceToken,
@@ -35,6 +37,7 @@ export class CoreModule {
           provide: coreServiceToken,
           useClass: coreService,
         },
+        coreResolver,
       ],
       exports: [provider],
       controllers: [coreController],
