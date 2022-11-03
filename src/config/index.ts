@@ -25,6 +25,6 @@ export default {
     key: process.env.SENDGRID_KEY,
   },
   email: {
-    from: { email: 'typer@pawelwidomski.pl' },
+    from: { email: 'content@pawelwidomski.pl', name: 'widmo' },
   },
 };
