@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { EmailTemplate } from 'nest-mailer-module';
 import { EmailRenderer, RENDERER } from 'nest-mailer-module/lib/renderers/renderer.service';
-import { Template } from './models/template';
 import { Main } from './templates/Main';
 
-const TEMPLATES: Record<string, Template> = {};
+const TEMPLATES: Record<string, EmailTemplate> = {};
 
 @Injectable()
 export class MailerService {
@@ -15,10 +15,10 @@ export class MailerService {
     return this.renderer.render(
       {
         subject: template.subject,
-        content: Main({ content: template, mergeVars }),
+        content: Main({ content: template.content, previewText: template.subject, mergeVars }),
       },
       mergeVars,
-    );
+    ) as string;
   }
 
   loadTemplate(templateId: string) {
@@ -27,6 +27,6 @@ export class MailerService {
       TEMPLATES[templateId] = require(`./templates/${templateId}`).default;
     }
 
-    return TEMPLATES[templateId];
+    return TEMPLATES[templateId] as EmailTemplate;
   }
 }

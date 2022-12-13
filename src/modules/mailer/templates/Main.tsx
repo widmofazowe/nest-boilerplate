@@ -1,3 +1,4 @@
+import { EmailTemplate } from 'nest-mailer-module';
 import * as React from 'react';
 import config from 'src/config';
 import styled from 'styled-components';
@@ -10,7 +11,6 @@ import { Header } from '../components/Header/Header';
 import { Img } from '../components/Img/Img';
 import { Row } from '../components/Row/Row';
 import { MergeVarsContext } from '../context/merge-vars';
-import { Template } from '../models/template';
 import { MAX_WIDTH } from '../styles/variables';
 
 export const Body = styled.div`
@@ -34,12 +34,13 @@ export const PreviewText = styled.span`
 `;
 
 interface Props {
-  content: Template;
+  content: any;
   mainImage?: string;
   mergeVars?: any;
+  previewText?: string;
 }
 
-export const Main = ({ content, mainImage, mergeVars }: Props) => {
+export const Main = ({ content, previewText, mainImage, mergeVars }: Props) => {
   return (
     <MergeVarsContext.Provider value={mergeVars}>
       <html>
@@ -48,11 +49,11 @@ export const Main = ({ content, mainImage, mergeVars }: Props) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="x-apple-disable-message-reformatting" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" {...{ crossorigin: true }} />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
         </head>
         <Body>
-          <PreviewText>{content.subject || ''}</PreviewText>
+          <PreviewText>{previewText || ''}</PreviewText>
           <Container align="center">
             <Row>
               <Cell align="center">
@@ -62,7 +63,7 @@ export const Main = ({ content, mainImage, mergeVars }: Props) => {
                       <Container align="left" vAlign="center" cellPadding="0">
                         <Row>
                           <Cell width="100%">
-                            <Header />
+                            <Header logoUrl={`${config.appUrl}/static/logo.png`} logoText="Spectral Services" />
                           </Cell>
                         </Row>
                         <Row>

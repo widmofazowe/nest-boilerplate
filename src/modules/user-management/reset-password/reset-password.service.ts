@@ -32,11 +32,13 @@ export class ResetPasswordService {
       },
     );
 
-    this.mailerEventEmitter.emit({
-      subject: 'Reset Password',
-      to: [{ email, type: 'to' }],
-      text: `Reset password with following token ${user.id}/${resetPasswordToken}`,
-    });
+    this.mailerEventEmitter.emit(
+      'reset-password',
+      {
+        to: [{ email, type: 'to' }],
+      },
+      { resetPasswordToken, user },
+    );
   }
 
   async updatePasword(userId: string, token: string, password: string) {

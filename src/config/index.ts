@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 export default {
   appUrl: process.env.APP_URL,
+  frontendAppUrl: process.env.FRONTEND_APP_URL,
   jwt: {
     authSecret: process.env.JWT_AUTH_SECRET,
     refreshSecret: process.env.JWT_REFRESH_SECRET,
@@ -26,6 +27,6 @@ export default {
     key: process.env.SENDGRID_KEY,
   },
   email: {
-    from: { email: 'content@pawelwidomski.pl', name: 'widmo' },
+    from: { email: 'contact@pawelwidomski.pl', name: 'Spectral Services' },
   },
 };

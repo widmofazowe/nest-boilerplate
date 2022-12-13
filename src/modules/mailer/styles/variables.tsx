@@ -4,7 +4,8 @@ export const breakpoints = {
 };
 
 export const colors = {
-  primary: '#005dff',
+  primary: '#9c27b0',
+  secondary: '#00c853',
   black: '#000',
   white: '#fff',
   grey: '#cecece',
