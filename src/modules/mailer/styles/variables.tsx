@@ -8,6 +8,7 @@ export const colors = {
   black: '#000',
   white: '#fff',
   grey: '#cecece',
+  lightGrey: '#efefef',
 };
 
 export const spacings = {

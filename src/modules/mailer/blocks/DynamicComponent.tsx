@@ -1,8 +1,18 @@
 import * as React from 'react';
+import { Button } from './Button';
 import { ContentBlock } from './ContentBlock';
+import { ImageContentBlock } from './ImageContentBlock/ImageContentBlock';
+import { NextSteps } from './NextSteps/NextSteps';
+import { NextStepsIcons } from './NextStepsIcons/NextStepsIcons';
+import { YoutubeLink } from './YoutubeLink';
 
 const Components = {
+  button: Button,
   contentBlock: ContentBlock,
+  imageContentBlock: ImageContentBlock,
+  nextSteps: NextSteps,
+  nextStepsIcons: NextStepsIcons,
+  youtubeLink: YoutubeLink,
 };
 
 export const DynamicComponent = ({ block }) => {

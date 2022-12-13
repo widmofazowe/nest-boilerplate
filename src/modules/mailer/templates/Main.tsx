@@ -10,6 +10,7 @@ import { Header } from '../components/Header/Header';
 import { Img } from '../components/Img/Img';
 import { Row } from '../components/Row/Row';
 import { MergeVarsContext } from '../context/merge-vars';
+import { Template } from '../models/template';
 import { MAX_WIDTH } from '../styles/variables';
 
 export const Body = styled.div`
@@ -33,7 +34,7 @@ export const PreviewText = styled.span`
 `;
 
 interface Props {
-  content: { subject?: string; blocks: any[] };
+  content: Template;
   mainImage?: string;
   mergeVars?: any;
 }
@@ -65,7 +66,7 @@ export const Main = ({ content, mainImage, mergeVars }: Props) => {
                           </Cell>
                         </Row>
                         <Row>
-                          <Cell>{mainImage && <Img />}</Cell>
+                          <Cell>{mainImage && <Img src={mainImage} alt="main image" />}</Cell>
                         </Row>
                         <>
                           {content.blocks.map(block => (
