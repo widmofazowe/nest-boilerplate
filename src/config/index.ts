@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default {
+  appUrl: process.env.APP_URL,
   jwt: {
     authSecret: process.env.JWT_AUTH_SECRET,
     refreshSecret: process.env.JWT_REFRESH_SECRET,

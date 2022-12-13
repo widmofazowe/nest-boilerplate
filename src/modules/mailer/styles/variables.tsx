@@ -14,4 +14,7 @@ export const spacings = {
   s: '4px',
   m: '8px',
   l: '16px',
+  xl: '24px',
 };
+
+export const MAX_WIDTH = 536;

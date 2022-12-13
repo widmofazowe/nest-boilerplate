@@ -8,11 +8,24 @@ export class MailerController {
 
   @Public()
   @Get('/preview/:templateId')
-  async previewTemplate(@Param('templateId') templateId: string) {
+  async preview(@Param('templateId') templateId: string) {
     const html = this.mailerService.render(templateId, {
       user: {
         name: 'widmo',
         email: 'widomski.pawel@gmail.com',
+      },
+    });
+
+    return html;
+  }
+
+  @Public()
+  @Get('/send/:templateId/:email')
+  async send(@Param('templateId') templateId: string, @Param('email') email) {
+    const html = this.mailerService.render(templateId, {
+      user: {
+        name: 'widmo',
+        email,
       },
     });
 

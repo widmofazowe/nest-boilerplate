@@ -2,20 +2,12 @@ import * as React from 'react';
 
 import * as styles from './Container.styles';
 
-export interface Props {
-  width?: string;
-  height?: string;
-  vAlign?: string;
-  align?: 'left' | 'center' | 'right';
+interface Props {
   children: JSX.Element | JSX.Element[];
-  padding?: string;
-  cellPadding?: string;
-  cellSpacing?: string;
-  maxWidth?: string;
   id?: string;
 }
 
-export const Container: React.FC<Props> = ({
+export const Container: React.FC<Props & styles.TableProps> = ({
   children,
   align,
   vAlign,
@@ -26,18 +18,22 @@ export const Container: React.FC<Props> = ({
   maxWidth,
   id,
   padding,
+  border,
+  borderRadius,
 }) => {
   return (
     <styles.Table
       height={height}
       width={width}
       vAlign={vAlign}
+      border={border}
       align={align}
       cellPadding={cellPadding}
       cellSpacing={cellSpacing}
       maxWidth={maxWidth}
       id={id}
       padding={padding}
+      borderRadius={borderRadius}
     >
       {children}
     </styles.Table>

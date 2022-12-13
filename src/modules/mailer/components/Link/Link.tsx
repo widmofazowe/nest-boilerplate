@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 import { ExternalLink } from './ExternalLink';
+import { InternalLink } from './InternalLink';
 
 const LinkComponents = {
+  emailInternalLink: InternalLink,
   emailExternalLink: ExternalLink,
 };
 
