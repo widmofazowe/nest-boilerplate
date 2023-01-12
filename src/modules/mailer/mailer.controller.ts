@@ -29,5 +29,7 @@ export class MailerController {
     const template = this.mailerService.render(templateId, TEST_PAYLOAD);
     console.log(template);
     this.mailerEmitter.emitPlain({ to: [{ email, type: 'to' }], html: template, subject: `Test - ${templateId}` });
+
+    return `${templateId} sent to ${email}`;
   }
 }
