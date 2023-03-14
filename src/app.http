@@ -4,31 +4,32 @@
 GET {{APP_URL}}
 
 ### register user
-POST {{APP_URL}}/registration
+POST {{APP_URL}}/user/registration
 Content-Type: application/json
 
 {
   "name": "widmo",
-  "email": "widmo@rspective.pl",
+  "email": "widomski.pawel@gmail.com",
   "password": "12345"
 }
 
 ### reset user password
 # @name reset-password
-POST {{APP_URL}}/reset-password
+POST {{APP_URL}}/user/reset-password
 Content-Type: application/json
 
 {
-  "email": "widmo@rspective.pl"
+  "email": "widomski.pawel@gmail.com"
 }
-
 
 ### update user password
 # @name update-password
-POST {{APP_URL}}/reset-password/dc39ae03-fef0-4a47-b5d4-1f6c52f388e6/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndpZG1vQHJzcGVjdGl2ZS5wbCIsImlhdCI6MTY2MzE4NTYyMSwiZXhwIjoxNjYzMTg5MjIxfQ.j6amd88715QEDWYGBTOJktfadesQgouU_HqNkaLLplQ
+PUT {{APP_URL}}/user/reset-password
 Content-Type: application/json
 
 {
+  "userId": "a7b1af7d-43b7-4efa-b44d-c95f770b8f58",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndpZG9tc2tpLnBhd2VsQGdtYWlsLmNvbSIsImlhdCI6MTY3ODc5OTU0MSwiZXhwIjoxNjc4ODAzMTQxfQ.zKuY5ImThfvY2fK3IUbH7rrIRFs781LuCy8fdMgU7_c",
   "password": "12345"
 }
 

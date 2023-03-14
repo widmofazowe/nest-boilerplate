@@ -1,7 +1,7 @@
 version: '3'
 services:
-  pg:
-    container_name: app-pg
+  db:
+    container_name: app-db
     image: postgres:13-alpine
     environment:
       # NOTE: These variables are used only once - when setting up the database for the first time.
@@ -11,12 +11,12 @@ services:
       - POSTGRES_DB=app
       - POSTGRES_PORT=5432
     volumes:
-      - app-pgdata:/var/lib/postgresql
+      - app-dbdata:/var/lib/postgresql
     ports:
       - '5432:5432'
     networks:
       - app-network
-  redis:
+  cache:
     image: redis
     container_name: app-cache
     ports:
@@ -29,4 +29,4 @@ networks:
     driver: bridge
 
 volumes:
-  app-pgdata:
+  app-dbdata:

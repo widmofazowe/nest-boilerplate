@@ -10,6 +10,7 @@ import {
 } from 'nest-mailer-module';
 import config from 'src/config';
 import { MailerService } from './mailer.service';
+import { Main } from './templates/Main';
 
 @Injectable()
 export class MailerEventEmitter {
@@ -27,10 +28,14 @@ export class MailerEventEmitter {
 
   emit(templateId: string, message: Omit<NoContentMessage, 'subject'>, mergeVars?: Record<string, any>) {
     const template = this.mailerService.loadTemplate(templateId);
+
     this.eventEmitter.emit(
       SEND_TEMPLATED_EMAIL_EVENT,
       new SendTemplatedEmailEvent(
-        template,
+        {
+          subject: template.subject,
+          content: Main({ content: template.content, previewText: template.subject, mergeVars }),
+        },
         {
           subject: template.subject,
           from: config.email.from,

@@ -3,7 +3,7 @@ import { Public } from 'src/common/decorators/public.decorator';
 import { RegistrationDto } from './registration.dto';
 import { RegistrationService } from './registration.service';
 
-@Controller('/registration')
+@Controller('/user/registration')
 export class RegistrationController {
   constructor(private registrationService: RegistrationService) {}
 

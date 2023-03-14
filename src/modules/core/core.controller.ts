@@ -8,7 +8,7 @@ import { AppAbility } from '../authorization/casl-ability.factory';
 import { Action } from '../authorization/action.enum';
 
 export const createCoreController = <T extends AbstractEntity>(entityConfig: EntityConfig<T>): Type<any> => {
-  @Controller(`/${entityConfig.baseUrl}`)
+  @Controller(`/mev/${entityConfig.baseUrl}`)
   class CoreController {
     constructor(@InjectCoreService(entityConfig.baseEntity) private coreService: CoreService<T>) {}
 

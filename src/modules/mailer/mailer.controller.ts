@@ -26,9 +26,13 @@ export class MailerController {
   @Public()
   @Get('/send/:templateId/:email')
   async send(@Param('templateId') templateId: string, @Param('email') email) {
-    const template = this.mailerService.render(templateId, TEST_PAYLOAD);
-    console.log(template);
-    this.mailerEmitter.emitPlain({ to: [{ email, type: 'to' }], html: template, subject: `Test - ${templateId}` });
+    this.mailerEmitter.emit(
+      templateId,
+      {
+        to: [{ email, type: 'to' }],
+      },
+      TEST_PAYLOAD,
+    );
 
     return `${templateId} sent to ${email}`;
   }
